@@ -3,12 +3,6 @@
 //-----------------------------------------------------
 // Establish connection to server and select database
 //-----------------------------------------------------
-
-// $db_server  	    = 'database.doolio.co';
-// $db_username  	= 'doolio_admin';
-// $db_password  	= 'Micke1990';
-// $db_database  	= 'doolio_beta';
-
 $db_server  	= 'localhost';
 $db_username  	= 'root';
 $db_password  	= 'root';
