@@ -2,6 +2,7 @@
 
 ### DATABASE CREATES:
 
+<pre>
 CREATE TABLE `user_auth` (
  `user_id` int(11) NOT NULL AUTO_INCREMENT,
  `username` text NOT NULL,
@@ -47,3 +48,4 @@ CREATE TABLE `user_skills` (
  KEY `user_id` (`user_id`),
  CONSTRAINT `user_skills_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_details` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+</pre>
