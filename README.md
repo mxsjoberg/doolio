@@ -1,7 +1,6 @@
 # doolio-0.5.0
 
-### DATABASE CREATES:
-
+### CREATE USER_AUTH:
 <pre>
 CREATE TABLE `user_auth` (
  `user_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -11,7 +10,11 @@ CREATE TABLE `user_auth` (
  PRIMARY KEY (`user_id`),
  UNIQUE KEY `username` (`username`(11))
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+</pre>
 
+### CREATE USER_DETAILS:
+
+<pre>
 CREATE TABLE `user_details` (
  `user_id` int(11) NOT NULL AUTO_INCREMENT,
  `first_name` text NOT NULL,
@@ -32,7 +35,11 @@ CREATE TABLE `user_details` (
  PRIMARY KEY (`user_id`),
  CONSTRAINT `user_details_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+<pre>
 
+### CREATE USER_SKILLS:
+
+</pre>
 CREATE TABLE `user_skills` (
  `skill_index` int(11) NOT NULL AUTO_INCREMENT,
  `user_id` int(11) NOT NULL,
