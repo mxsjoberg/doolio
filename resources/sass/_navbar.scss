@@ -1,0 +1,169 @@
+
+// general
+// --------------------------
+.navbar-default {
+    font-family             : $font-family-base;
+    letter-spacing          : 0;
+
+    background-color        : $color-white;
+    border-top              : 0px solid $color-greyscale-alt;
+    border-bottom           : 1px solid $color-greyscale-alt;
+
+    -webkit-transition      : all .25s;
+    -moz-transition         : all .25s;
+    transition              : all .25s; 
+}
+
+.navbar-default--azure    { border-top: 4px solid $color-azure; }
+.navbar-default--emerald  { border-top: 4px solid $color-emerald; }
+.navbar-default--violet   { border-top: 4px solid $color-violet; }
+.navbar-default--yellow   { border-top: 4px solid $color-yellow; }
+.navbar-default--red      { border-top: 4px solid $color-red; }
+.navbar-default--grey     { border-top: 4px solid $color-grey; }
+.navbar-default--dark     { border-top: 4px solid $color-greyscale-base; }
+
+// brand
+// --------------------------
+.navbar-default .navbar-brand {
+    padding                 : 19px 15px;
+    height                  : auto;
+
+    font-family             : $font-family-base;
+    font-weight             : $font-weight-bold;
+    text-transform          : none;
+    line-height             : 1; 
+
+    color                   : $color-greyscale-base;
+}
+
+.navbar-default .navbar-brand .beta-badge {
+    position                : relative;
+    display                 : none;
+
+    font-size               : 1.2rem;
+
+    background-color        : transparent;
+    color                   : $color-greyscale-base;
+
+    @media($media-width-sm) { 
+        display                 : inline;
+    }
+}
+
+// navigation
+// --------------------------
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > span.user,
+.navbar-default .navbar-nav > li > span.user:focus {
+    position                : relative;
+    display                 : block;
+    padding                 : 15px;
+
+    font-size               : 1.6rem;
+    font-weight             : 400;
+    text-transform          : none;
+
+    color                   : $color-greyscale-base;
+
+    -webkit-transition      : all .25s;
+    -moz-transition         : all .25s;
+    transition              : all .25s;
+
+    @media($media-width-sm) {
+        padding-top             : 22px;
+        padding-bottom          : 22px;
+    }
+}
+
+.navbar-default .navbar-collapse { max-height: 100%; }
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form { border-color: $color-greyscale-light; }
+
+// navigation effects
+// --------------------------
+.navbar-default .navbar-nav > li > a {
+
+    &:hover, 
+    &:focus:hover {
+        background-color        : $color-greyscale-light;
+    }
+
+    &.active,
+    &.active:focus {
+        background-color        : $color-greyscale-light;
+        color                   : $color-greyscale-base;
+    }
+}
+
+li { list-style: none; }
+
+.navbar-form > ul li {
+    position                : relative;
+    display                 : block;
+}
+
+.navbar-form > ul li label > span,
+.navbar-form > ul li label > span:focus,
+.navbar-form > ul li label > span.user,
+.navbar-form > ul li label > span.user:focus {
+    position                : relative;
+    display                 : block;
+    padding                 : 15px;
+
+    font-size               : 1.6rem;
+    font-weight             : 400;
+    text-transform          : none;
+
+    background-color        : $color-greyscale-light;
+    color                   : $color-greyscale-base;
+
+    -webkit-transition      : all .15s;
+    -moz-transition         : all .15s;
+    transition              : all .15s;
+
+    // @media($media-width-sm) {
+    //     padding-top             : 22px;
+    //     padding-bottom          : 22px;
+    // }
+}
+
+.navbar-form > ul li label > span {
+
+    &:hover, 
+    &:focus:hover {
+        background-color        : $color-greyscale-base !important;
+        color                   : $color-white;
+    }
+
+    &.active,
+    &.active:focus {
+        background-color        : $color-greyscale-base !important;
+        color                   : $color-white;
+    }
+}
+
+.navbar-form label > input { display: none; }
+.navbar-form label > input + span { cursor: pointer; width: 100%; }
+
+.navbar-form > ul li label > input:checked + span {
+    background-color        : lighten($color-greyscale-base, 5%);
+    border-color            : $color-greyscale-base !important;
+    color                   : $color-white !important;
+}
+
+// toggle buttons
+// --------------------------
+.navbar-default .navbar-toggle {
+    padding                 : 22px 30px;
+    margin                  : 0; // reset
+    margin-right            : 15px;
+
+    background-color        : transparent;
+
+    &:hover,
+    &:focus:hover {
+        background-color        : $color-greyscale-light;
+    }
+}

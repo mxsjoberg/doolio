@@ -1,0 +1,115 @@
+
+// general
+// --------------------------
+.btn {
+    padding                 : 15px 30px;
+    outline                 : none !important;
+    outline                 : 0;
+
+    font-family             : $font-family-base;
+    font-weight             : $font-weight-bold;
+    text-transform          : uppercase;
+
+    border-radius           : $border-radius-base;
+    word-wrap               : break-word;
+    box-shadow              : 0 0 0 0; 
+
+    white-space             : pre-wrap;   
+    white-space             : -moz-pre-wrap;
+    white-space             : -pre-wrap; 
+    white-space             : -o-pre-wrap;
+
+    &:active { box-shadow: none !important; }
+}
+
+// primary
+// --------------------------
+.btn-primary {
+    outline                 : none;
+    outline                 : 0;
+
+    border                  : 1px solid;
+    border-color            : $color-greyscale-base;
+    color                   : $color-white;
+}
+
+.btn-primary.btn-greyscale-base {
+    background-color        : lighten($color-greyscale-base, 8%);
+    border-color            : $color-greyscale-base;
+    color                   : $color-white;
+
+    -webkit-transition      : all .15s;
+    -moz-transition         : all .15s;
+    transition              : all .15s;
+
+    &:hover,
+    &:focus:hover,
+    &:active {
+        background-color        : $color-greyscale-base;
+        border-color            : $color-greyscale-base;
+    }
+}
+
+.btn-primary.btn-white {
+    background-color        : $color-white;
+    border-color            : $color-white;
+    color                   : $color-greyscale-base;
+
+    -webkit-transition      : all .15s;
+    -moz-transition         : all .15s;
+    transition              : all .15s;
+
+    &:hover,
+    &:focus:hover,
+    &:active {
+        background-color        : $color-greyscale-base;
+        border-color            : $color-greyscale-base;
+    }
+
+}
+
+.btn-primary.btn-round {
+    height                  : 60px;
+    width                   : 60px;
+    border-radius           : 50%;
+}
+
+// secondary
+// --------------------------
+.btn-secondary {
+    outline                 : none;
+    outline                 : 0; 
+
+    background-color        : $color-white;
+    border                  : 1px solid;
+    border-color            : $color-greyscale-alt;
+    color                   : $color-greyscale-base;
+}
+
+.btn-secondary.btn-no-bg { background-color: transparent; }
+
+.btn-secondary.btn-alert {
+    -webkit-transition      : all .15s;
+    -moz-transition         : all .15s;
+    transition              : all .15s;
+
+    &:hover,
+    &:focus:hover,
+    &:active {
+        border-color            : $color-alert-danger;
+        color                   : $color-alert-danger;
+    }
+}
+
+.btn-secondary.btn-neutral {
+    -webkit-transition      : all .15s;
+    -moz-transition         : all .15s;
+    transition              : all .15s;
+
+    &:hover,
+    &:focus:hover,
+    &:active {
+        border-color            : $color-greyscale-base;
+        color                   : $color-greyscale-base;
+    }
+}

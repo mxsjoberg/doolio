@@ -1,0 +1,52 @@
+
+BETA 0.5.0
+
+----------------------------------------------------------------------------------------
+Ideas
+----------------------------------------------------------------------------------------
+
+	* Re-structure database, i.e. table names, column names, etc.
+	* Paid options (e.g. combined headers, themes, promotion)
+	* AJAX to update part of page dynamically (e.g. when changing skill order)
+	* Pay to contact form
+
+----------------------------------------------------------------------------------------
+Development
+----------------------------------------------------------------------------------------
+	
+	[X] Add learning resources to "dropdown" under skills, which can be used to show what a user used to learn etc. (affiliate links to incentivise)
+	[ ] Get unique skills from database, add to JSON, and autocomplete explore search field.
+	[ ] Add sort skills functionality to profile page.
+	[ ] Add contact toggle functionality to profile page.
+ 
+----------------------------------------------------------------------------------------
+Design
+----------------------------------------------------------------------------------------
+	
+	[ ] Add describing texts to all forms etc.
+
+----------------------------------------------------------------------------------------
+Cleaning/ Testing
+----------------------------------------------------------------------------------------
+	
+	[ ] Collect all modals into include-file, or similar.
+	[ ] Refactor styling and make pages more consistent.
+
+----------------------------------------------------------------------------------------
+Issues
+----------------------------------------------------------------------------------------
+
+	[X] Footer issue on pages with less content (relative to content and not fixed)
+	[ ] Resetting password can be done without consent.
+	[ ] Long links in navbar is breaking media width.
+	[ ] Cloudlfare intercepting database, use 208.97.163.87.
+	[ ] Edit skill is not two columns.
+
+----------------------------------------------------------------------------------------
+Other
+----------------------------------------------------------------------------------------
+	
+	[X] Create 'help' modal with instructions and contact details
+	[ ] Create 'about us' page with relevant story
+	[ ] Create 'press' page with logo, colors, etc.
+

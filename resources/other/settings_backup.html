@@ -1,0 +1,91 @@
+<?php
+
+//-----------------------------------------------------
+// Update account details for user
+//-----------------------------------------------------
+
+// variables to store error messages
+$error_account='';
+$error_personal='';
+
+// regex for validation
+$regex_name = "/\b([a-zA-Z0-9]+){3,}\b/";
+$regex_email = "/\b[a-zA-Z0-9._%+-]+(@)[a-zA-Z0-9.-]+[a-zA-Z]{2,4}\b/";
+
+if (isset($_POST['submit']))
+{
+	if (empty($_POST['username']) && empty($_POST['email']))
+	{	
+		// error message if both username and email are empty
+		$error_account = "Invalid <strong>username</strong> or <strong>email</strong>, please try again.";
+	}
+	// validate username and email
+	elseif (preg_match($regex_name, $_POST['username']) && preg_match($regex_email, $_POST['email']))
+	{	
+		// define username and email
+		$username = $_POST['username'];
+		$email = $_POST['email'];
+
+		// to protect MySQL injection for security purpose
+	    $username = stripslashes($username);
+	    $username = mysql_real_escape_string($username);
+
+	    // SQL query to check username
+		$username_query = mysql_query("SELECT * FROM user_auth WHERE username='$username'", $link);
+		$username_check = mysql_num_rows($username_query);
+
+	    if ($username_check != 0)
+	    {
+	        $error_account = "<i class='fa fa-meh-o' aria-hidden='true'></i> This <strong>username</strong> is already taken, please try again.";
+	    }
+	    elseif ($username != NULL)
+	    {
+	        // update new username in user_auth
+	        $insert_query = "UPDATE user_auth SET username='$username' WHERE user_id='$user_id'";
+	        $insert_auth = mysql_query($insert_query, $link);
+
+	        if(! $insert_auth ) {
+	            $error_account = "<i class='fa fa-exclamation' aria-hidden='true'></i> Uh oh, something went wrong.";
+	        }
+
+	        // update active session
+	        $_SESSION['login_user'] = $username;
+	    }
+	    else
+	    {
+	    	continue;
+	    }
+
+	    // SQL query to check email
+    	$email_query = mysql_query("SELECT * FROM user_details WHERE contact_email='$email'", $link);
+    	$email_check = mysql_num_rows($email_query);
+
+    	if ($email_check != 0)
+	    {
+	        $error_account = "<i class='fa fa-meh-o' aria-hidden='true'></i> This <strong>email</strong> is already in use, please try again.";
+	    }
+	    elseif ($email != NULL)
+	    {
+	        // update new email in user_details
+	        $insert_query = "UPDATE user_details SET contact_email='$email' WHERE user_id='$user_id'";
+	        $insert_auth = mysql_query($insert_query, $link);
+
+	        if(! $insert_auth ) {
+	            $error_account = "<i class='fa fa-exclamation' aria-hidden='true'></i> Uh oh, something went wrong.";
+	        }
+	    }
+	    else
+	    {
+	    	continue;
+	    }
+
+	    // reload page
+		header("location: settings");
+	}
+	else
+	{
+		$error = "<i class='fa fa-exclamation' aria-hidden='true'></i> Invalid <strong>username</strong> or <strong>email</strong>, please try again.";
+	}
+}
+
+?>

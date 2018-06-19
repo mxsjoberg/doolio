@@ -1,0 +1,10 @@
+AuthType Basic  
+AuthName "restricted area"  
+AuthUserFile /home/doolio_admin/doolio.co/public/.htpasswd
+require valid-user
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?key=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ index.php?key=$1
