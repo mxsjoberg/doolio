@@ -2,9 +2,7 @@
 
 December 30, 2018
 
-This project has moved to <a href="https://learnhub.io">LearnHub.io</a>! Future development will continue there instead and <a href="https://doolio.co">Doolio.co</a> will soon redirect all incoming traffic.
-
-<a href="https://learnhub.io">LearnHub.io</a> is a skill tracker with user-curated pathways to make life easier for self-learners. User accounts are not migrated and you are required to sign up again, or explore pathways without an account.
+This project has moved to <a href="https://learnhub.io">LearnHub.io</a>! Future development will continue there instead and <a href="https://doolio.co">Doolio.co</a> will soon redirect all incoming traffic. <a href="https://learnhub.io">LearnHub.io</a> is a skill tracker with user-curated pathways to make life easier for self-learners. User accounts are not migrated and you are required to sign up again, or explore pathways without an account.
 
 Feel free to clone and build similar PHP applications using code in this repo!
 
