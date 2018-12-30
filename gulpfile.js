@@ -1,3 +1,5 @@
+/* THIS FILE IS LIKELY DEPRECIATED */
+
 // Dependencies
 var gulp = require('gulp'),     
     sass = require('gulp-ruby-sass') 

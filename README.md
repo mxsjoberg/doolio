@@ -1,6 +1,17 @@
-# doolio-0.5.0
+# Doolio.co (NOT MAINTAINED)
 
-### CREATE USER_AUTH:
+December 30, 2018
+
+This project has moved to <a href="https://learnhub.io">LearnHub.io</a>! Future development will continue there instead and <a href="https://doolio.co">Doolio.co</a> will soon redirect all incoming traffic.
+
+<a href="https://learnhub.io">LearnHub.io</a> is a skill tracker with user-curated pathways to make life easier for self-learners. User accounts are not migrated and you are required to sign up again, or explore pathways without an account.
+
+Thank you and happy new year,
+Michael Sjöberg
+
+# DATABASE CREATES
+
+### USER_AUTH
 <pre>
 CREATE TABLE `user_auth` (
  `user_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -12,7 +23,7 @@ CREATE TABLE `user_auth` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 </pre>
 
-### CREATE USER_DETAILS:
+### USER_DETAILS
 
 <pre>
 CREATE TABLE `user_details` (
@@ -37,7 +48,7 @@ CREATE TABLE `user_details` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 </pre>
 
-### CREATE USER_SKILLS:
+### USER_SKILLS
 
 <pre>
 CREATE TABLE `user_skills` (

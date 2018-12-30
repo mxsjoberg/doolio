@@ -1,4 +1,4 @@
-<?php
+<?php // index.php
 
 //-----------------------------------------------------
 // Include template based on url keyword
@@ -11,13 +11,11 @@ $url_keyword = strtolower($_GET['key']);
 /*
 * Require inactive session (logged out)
 */
-if($url_keyword == 'home' || $url_keyword == 'home.php')
-{	
+if($url_keyword == 'home' || $url_keyword == 'home.php') {	
 	// include template for home
     include ('home.php');
 }
-elseif($url_keyword == 'register' || $url_keyword == 'register.php')
-{	
+elseif($url_keyword == 'register' || $url_keyword == 'register.php') {	
 	// include template for register
     include ('register.php');
 }

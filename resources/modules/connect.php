@@ -1,4 +1,4 @@
-<?php
+<?php // connect.php
 
 //-----------------------------------------------------
 // Establish connection to server and select database

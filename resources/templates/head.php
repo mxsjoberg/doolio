@@ -9,13 +9,12 @@
 
 <title><?php echo "$page_title"; ?></title>
 <link href='../_img/icon-color.png' rel='icon'>
+<link href='../_css/main.css' rel='stylesheet'>
 
 <!-- <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>-->
 <script src='../_js/jquery.min.js'></script>
 
-<link href='../_css/main.css' rel='stylesheet'>
-
-<!-- for testing only -->
+<!-- TEST -->
 <script src="../_js/countries.js"></script>
 <script src="../_js/skills.js"></script>
 

@@ -1,17 +1,12 @@
-<?php
+<?php // resetpassword_.php
 
 $regex_email = "/\b[a-zA-Z0-9._%+-]+(@)[a-zA-Z0-9.-]+[a-zA-Z]{2,4}\b/";
 
 if (isset($_POST['submit']) && empty($error)) {
-
 	// check if email is empty
-	if (empty($_POST['email']))
-	{
+	if (empty($_POST['email'])) {
 		$error = "Invalid email, please try again. <strong><a href='mailto:support@doolio.co'>Neep help?</a></strong>";
-	}
-	// check if email is valid
-	elseif (preg_match($regex_email, $_POST['email']))
-	{
+	} elseif (preg_match($regex_email, $_POST['email'])) {
 		// define email
 		$email = $_POST['email'];
 
@@ -24,8 +19,7 @@ if (isset($_POST['submit']) && empty($error)) {
 		$email_check = mysql_num_rows($email_query);
 
 		// check if email exists
-		if ($email_check != 0)
-		{	
+		if ($email_check != 0) {	
 			// query database for user id
 	    	$query = mysql_query("SELECT * FROM user_details WHERE contact_email='$email'", $link);
 	    	$row = mysql_fetch_row($query);
@@ -53,8 +47,7 @@ if (isset($_POST['submit']) && empty($error)) {
 
 			if(!$update_auth ) {
 			    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-			}
-			else {
+			} else {
 				// send new password to existing email
 				$to = "$email";
 				$subject = "Your new password at doolio.co";
@@ -66,17 +59,13 @@ if (isset($_POST['submit']) && empty($error)) {
 				// success message
 	        	$success = "<strong>Geronimo!</strong> Successfully reset password.";
 			}
-		}
-		else
-		{
+		} else {
 			$error = "Invalid email, please try again. <strong><a href='mailto:support@doolio.co'>Neep help?</a></strong>";
 		}
 		
 		// closing Connection
 		mysql_close($link);
-	}
-	else
-	{
+	} else {
 		$error = "Invalid email, please try again. <strong><a href='mailto:support@doolio.co'>Neep help?</a></strong>";
 	}
 }

@@ -1,10 +1,9 @@
-<?php
+<?php // myprofile_.php
 
 //-----------------------------------------------------
 // Add new skill
 //-----------------------------------------------------
 if (!empty($_POST["submitSkill"]) && empty($error)) {
-	
 	// define skill details
 	$skill_name             = $_POST["skillName"]; 
 	$skill_type             = $_POST["skillType"]; 
@@ -19,8 +18,7 @@ if (!empty($_POST["submitSkill"]) && empty($error)) {
 	$skill_resource_3   	= $_POST["skillResource3"]; 
 
 	// update skill name
-	if (!empty($skill_name) && empty($error))
-	{	
+	if (!empty($skill_name) && empty($error)) {	
 		// create new skill id for user
 	    $query = " INSERT INTO user_skills ".
 	             " (user_id, skill_name, skill_type, skill_level, skill_link, skill_resource_1, skill_resource_2, skill_resource_3) ".
@@ -30,12 +28,9 @@ if (!empty($_POST["submitSkill"]) && empty($error)) {
 	    // define skill id from insert
 	    $skill_id = mysql_insert_id();
 
-	    if(!$insert) 
-	    {
+	    if(!$insert) {
 		    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-	    }
-	    else
-	    {	
+	    } else {	
 	    	// add details
 	    	$edit_skill_name = edit_skill_name($skill_name, $skill_id, $user_id, $link);
 	    	$edit_skill_type = edit_skill_type($skill_type, $skill_id, $user_id, $link);
@@ -50,13 +45,10 @@ if (!empty($_POST["submitSkill"]) && empty($error)) {
 	    	$edit_skill_resource_3 = edit_skill_resource_3($skill_resource_3, $skill_id, $user_id, $link);
 
 	    	// check valid name
-	    	if ($skill_name != NULL && $edit_skill_name == false)
-	    	{
+	    	if ($skill_name != NULL && $edit_skill_name == false) {
 	    		$delete_skill = delete_skill($skill_id, $user_id, $link);
 		    	$error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-	    	}
-	    	else
-	    	{	
+	    	} else {	
 	    		$success = "<strong>Allons-y!</strong> Successfully added skill.";
 	    	}
 	    }
@@ -67,7 +59,6 @@ if (!empty($_POST["submitSkill"]) && empty($error)) {
 // Edit skill
 //-----------------------------------------------------
 if (!empty($_POST["updateSkill"]) && empty($error)) {
-
 	// define skill details
     $update_skill_id 		= $_POST["updateSkillId"]; 	
 	$update_skill_name      = $_POST["updateSkillName"]; 
@@ -83,118 +74,86 @@ if (!empty($_POST["updateSkill"]) && empty($error)) {
 	$update_skill_resource_3      = $_POST["updateSkillResource3"]; 
 
 	// update skill name
-	if (!empty($update_skill_name) && empty($error))
-	{
+	if (!empty($update_skill_name) && empty($error)) {
 		// call function to update skill name
 		$edit_skill_name = edit_skill_name($update_skill_name, $update_skill_id, $user_id, $link);
 
 		// error if not null and return is false
-		if ($update_skill_name != NULL && $edit_skill_name == false)
-		{
+		if ($update_skill_name != NULL && $edit_skill_name == false) {
 		    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-		}
-		else
-		{
+		} else {
 			$success = "<strong>Allons-y!</strong> Successfully updated skill.";
 		}
 	}
-
 	// update skill type
-	if (!empty($update_skill_type) && empty($error))
-	{	
+	if (!empty($update_skill_type) && empty($error)) {	
 		// call function to update skill type
 		$edit_skill_type = edit_skill_type($update_skill_type, $update_skill_id, $user_id, $link);
 
 		// error if not null and return is false
-		if ($update_skill_type != NULL && $edit_skill_type == false)
-		{
+		if ($update_skill_type != NULL && $edit_skill_type == false) {
 		    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-		}
-		else 
-		{
+		} else {
 			$success = "<strong>Allons-y!</strong> Successfully updated skill.";
 		}
 	}
- 	
  	// update skill level
-	if (!empty($update_skill_level) && empty($error))
-	{	
+	if (!empty($update_skill_level) && empty($error)) {	
 		// call function to update skill level
 		$edit_skill_level = edit_skill_level($update_skill_level, $update_skill_id, $user_id, $link);
 
 		// error if not null and return is false
-		if ($update_skill_level != NULL && $edit_skill_level == false)
-		{
+		if ($update_skill_level != NULL && $edit_skill_level == false) {
 		    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-		}
-		else 
-		{
+		} else {
 			$success = "<strong>Allons-y!</strong> Successfully updated skill.";
 		}
 	}
-
 	// update skill link
-	if ($update_skill_link != NULL && empty($error))
-	{	
+	if ($update_skill_link != NULL && empty($error)) {	
 		// call function to update skill link
 		$edit_skill_link = edit_skill_link($update_skill_link, $update_skill_id, $user_id, $link);
 
 		// error if not null and return is false
-		if ($edit_skill_link == false)
-		{
+		if ($edit_skill_link == false) {
 		    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-		}
-		else 
-		{
+		} else {
 			$success = "<strong>Allons-y!</strong> Successfully updated skill.";
 		}
 	}
-
 	// update skill resource 1
-	if ($update_skill_resource_1 != NULL && empty($error))
-	{	
+	if ($update_skill_resource_1 != NULL && empty($error)) {	
 		// call function to update skill link
 		$edit_skill_resource = edit_skill_resource_1($update_skill_resource_1, $update_skill_id, $user_id, $link);
 
 		// error if not null and return is false
-		if ($edit_skill_resource == false)
-		{
+		if ($edit_skill_resource == false) {
 		    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-		}
-		else 
-		{
+		} else {
 			$success = "<strong>Allons-y!</strong> Successfully updated skill.";
 		}
 	}
 	// update skill resource 2
-	if ($update_skill_resource_2 != NULL && empty($error))
-	{	
+	if ($update_skill_resource_2 != NULL && empty($error)) {	
 		// call function to update skill link
 		$edit_skill_resource = edit_skill_resource_2($update_skill_resource_2, $update_skill_id, $user_id, $link);
 
 		// error if not null and return is false
-		if ($edit_skill_resource == false)
-		{
+		if ($edit_skill_resource == false) {
 		    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-		}
-		else 
-		{
+		} else {
 			$success = "<strong>Allons-y!</strong> Successfully updated skill.";
 		}
 	}
 	// update skill resource 3
-	if ($update_skill_resource_3 != NULL && empty($error))
-	{	
+	if ($update_skill_resource_3 != NULL && empty($error)) {	
 		// call function to update skill link
 		$edit_skill_resource = edit_skill_resource_3($update_skill_resource_3, $update_skill_id, $user_id, $link);
 
 		// error if not null and return is false
-		if ($edit_skill_resource == false)
-		{
+		if ($edit_skill_resource == false) {
 		    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-		}
-		else 
-		{
+		} else {
 			$success = "<strong>Allons-y!</strong> Successfully updated skill.";
 		}
 	}
@@ -203,8 +162,7 @@ if (!empty($_POST["updateSkill"]) && empty($error)) {
 //-----------------------------------------------------
 // Change looking for work
 //-----------------------------------------------------
-if (is_numeric($_POST["work"]) && empty($error)) {	
-	
+if (is_numeric($_POST["work"]) && empty($error)) {
 	// define looking for work value
 	$looking_for_work_value = $_POST["work"];
 
@@ -212,8 +170,7 @@ if (is_numeric($_POST["work"]) && empty($error)) {
 	$update_looking_for_work= set_user_looking_for_work($looking_for_work_value, $user_id, $link);
 
 	// check for errors
-	if ($looking_for_work_value != NULL && $update_looking_for_work == false)
-	{
+	if ($looking_for_work_value != NULL && $update_looking_for_work == false) {
 	    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
 	}
 }
@@ -221,8 +178,7 @@ if (is_numeric($_POST["work"]) && empty($error)) {
 //-----------------------------------------------------
 // Change theme
 //-----------------------------------------------------
-if (is_numeric($_POST["color"]) && empty($error)) {	
-	
+if (is_numeric($_POST["color"]) && empty($error)) {
 	// define theme value
 	$theme_value = $_POST["color"];
 
@@ -230,8 +186,7 @@ if (is_numeric($_POST["color"]) && empty($error)) {
 	$update_theme_value = set_theme($theme_value, $user_id, $link);
 
 	// check for errors
-	if ($theme_value != NULL && $update_theme_value == false)
-	{
+	if ($theme_value != NULL && $update_theme_value == false) {
 	    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
 	}
 }
@@ -240,7 +195,6 @@ if (is_numeric($_POST["color"]) && empty($error)) {
 // Change order
 //-----------------------------------------------------
 if (is_numeric($_POST["order"]) && empty($error)) {
-
 	// define skill order value
 	$order_by = $_POST["order"];
 
@@ -248,8 +202,7 @@ if (is_numeric($_POST["order"]) && empty($error)) {
 	$update_order_by = set_user_skill_order($order_by, $user_id, $link);
 
 	// check for errors
-	if ($order_by != NULL && $update_order_by == false)
-	{
+	if ($order_by != NULL && $update_order_by == false) {
 	    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
 	}
 }
@@ -258,7 +211,6 @@ if (is_numeric($_POST["order"]) && empty($error)) {
 // Delete skill
 //-----------------------------------------------------
 if (!empty($_POST["deleteSkillId"]) && empty($error)) {	
-	
 	// define skill to delete
 	$skill_to_delete = $_POST["deleteSkillId"];
 
@@ -266,8 +218,7 @@ if (!empty($_POST["deleteSkillId"]) && empty($error)) {
 	$delete_skill = delete_skill($skill_to_delete, $user_id, $link);
 
 	// check for error
-	if ($skill_to_delete != NULL && $delete_skill == false)
-	{
+	if ($skill_to_delete != NULL && $delete_skill == false) {
 	    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
 	}
 }

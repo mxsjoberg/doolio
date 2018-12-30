@@ -1,4 +1,4 @@
-<?php
+<?php // display_user_skills.php
 
 //  ----------------------------------------------------------------------------
 //  Iterate and output skills for user. (Logged out)
@@ -11,14 +11,12 @@
 $query = mysql_query("SELECT * FROM user_skills WHERE user_id='$user_id' ORDER BY $skill_order DESC", $link);
 
 // check if more than one skill
-if (mysql_num_rows($query) != 0)
-{   
+if (mysql_num_rows($query) != 0) {   
     // helper counter
     $counter = 0;
 
     // iterate all skills
-    while ($row = mysql_fetch_row($query))
-    {   
+    while ($row = mysql_fetch_row($query)) {   
         // define skill details
         $skill_id               = $row[0];
         $skill_user_id          = $row[1];
@@ -29,21 +27,28 @@ if (mysql_num_rows($query) != 0)
         // define link to skill
         $skill_link             = $row[5];
 
-        if ($skill_link == '' || $skill_link == ' ') { $skill_link = NULL; }
+        if ($skill_link == '' || $skill_link == ' ') {
+            $skill_link = NULL;
+        }
 
         // define learning resources
         $resource_link_1        = $row[6];
         $resource_link_2        = $row[7];
         $resource_link_3        = $row[8];
 
-        if ($resource_link_1 == '' || $resource_link_1 == ' ') { $resource_link_1 = NULL; }
-        if ($resource_link_2 == '' || $resource_link_2 == ' ') { $resource_link_2 = NULL; }
-        if ($resource_link_3 == '' || $resource_link_3 == ' ') { $resource_link_3 = NULL; }
+        if ($resource_link_1 == '' || $resource_link_1 == ' ') {
+            $resource_link_1 = NULL;
+        }
+        if ($resource_link_2 == '' || $resource_link_2 == ' ') {
+            $resource_link_2 = NULL;
+        }
+        if ($resource_link_3 == '' || $resource_link_3 == ' ') {
+            $resource_link_3 = NULL;
+        }
 
         if ($skill_link != NULL || $resource_link_1 != NULL || $resource_link_2 != NULL || $resource_link_3 != NULL) {
             $some_link = true;
-        }
-        else {
+        } else {
             $some_link = false;
         }
 
@@ -60,8 +65,11 @@ if (mysql_num_rows($query) != 0)
         $type                   = $skill_type;
 
         // theme colors
-        if ($theme == "Playful")  { $color = get_theme_skill_color($type); }
-        elseif ($theme == "Dark") { $color = "dark"; }
+        if ($theme == "Playful")  {
+            $color = get_theme_skill_color($type);
+        } elseif ($theme == "Dark") {
+            $color = "dark";
+        }
 
         // accordion wrapper
         echo "
@@ -72,8 +80,7 @@ if (mysql_num_rows($query) != 0)
                 if ($some_link) {
                     echo "
                     <a data-toggle='collapse' href='#collapse-$skill_id' aria-expanded='false' aria-controls='collapse-$skill_id'>";
-                }
-                else {
+                } else {
                     echo "
                     <a>";
                 }
@@ -82,8 +89,7 @@ if (mysql_num_rows($query) != 0)
                     if ($counter == 0) { 
                     echo "
                         <div class='bar-main-container simple no-margin no-border'>";
-                    }
-                    else { 
+                    } else { 
                     echo "
                         <div class='bar-main-container simple no-margin'>";
                     }
@@ -160,8 +166,7 @@ if (mysql_num_rows($query) != 0)
                         if ($skill_link == NULL) {
                         echo"
                         <div class='col-xs-12 col-md-12 no-padding'>";
-                        }
-                        else {
+                        } else {
                         echo"
                         <div class='col-xs-12 col-md-12 no-padding margin-top-sm'>";
                         }
@@ -180,21 +185,21 @@ if (mysql_num_rows($query) != 0)
                                     <a href='"; echo "$resource_link_1"; echo "' target='_blank'>"; echo "$resource_link_1"; echo "</a>";
                                     echo "
                                     </p>";
-                                };
+                                }
                                 if ($resource_link_2 != NULL) { 
                                     echo "
                                     <p class='no-margin'>
                                     <a href='"; echo "$resource_link_2"; echo "' target='_blank'>"; echo "$resource_link_2"; echo "</a>";
                                     echo "
                                     </p>";
-                                };
+                                }
                                 if ($resource_link_3 != NULL) { 
                                     echo "
                                     <p class='no-margin'>
                                     <a href='"; echo "$resource_link_3"; echo "' target='_blank'>"; echo "$resource_link_3"; echo "</a>";
                                     echo "
                                     </p>";
-                                };
+                                }
                             // end resource wrapper
                             echo "
                             </div>";
@@ -220,9 +225,7 @@ if (mysql_num_rows($query) != 0)
         // iterate counter
         $counter++;
     }
-}
-else 
-{
+} else {
     // output if no skills
     echo "
         <div class='col-md-12 col-xs-12'>

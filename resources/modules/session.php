@@ -1,4 +1,4 @@
-<?php // session user details
+<?php // session.php
 
 require ('connect.php');
 
@@ -15,16 +15,13 @@ $row = mysql_fetch_assoc($ses_sql);
 // check active session
 $login_session = $row['username'];
 
-if(!isset($login_session))
-{
+if(!isset($login_session)) {
 	// closing connection
 	mysql_close($link);
 
 	// redirect to index
 	header('location: home');
-}
-else
-{
+} else {
 	// get user from database
     // $user_auth_query = mysql_query("SELECT * FROM user_auth WHERE username='$user_check'", $link);
     // $user_auth_row = mysql_fetch_row($user_auth_query);

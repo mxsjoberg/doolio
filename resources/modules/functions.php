@@ -1,4 +1,4 @@
-<?php
+<?php // functions.php
 
 include ('../resources/modules/functions/user.php');
 include ('../resources/modules/functions/skills.php');
@@ -11,7 +11,6 @@ include ('../resources/modules/functions/theme.php');
 // 	Return 		: Boolean
 //	----------------------------------------------------------------------------
 function is_username_available($username, $link) {
-
 	// system names not available as usernames
 	$system_names = array(
 		"home",
@@ -40,8 +39,7 @@ function is_username_available($username, $link) {
 	// check system names
 	if (in_array($username, $system_names)) {
 	    return false;
-	}
-	else {
+	} else {
 		
 		// SQL query to check username
 		$query = mysql_query("SELECT * FROM user_auth WHERE username='$username'", $link);
@@ -50,8 +48,7 @@ function is_username_available($username, $link) {
 		// check username
 		if ($check != 0) {
 			return false;
-		}
-		else {
+		} else {
 			return true;
 		}
 

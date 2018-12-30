@@ -1,4 +1,4 @@
-<?php
+<?php // display_my_skills.php
 
 //  ----------------------------------------------------------------------------
 //  Iterate and output skills for user. (Logged in)
@@ -11,14 +11,12 @@
 $query = mysql_query("SELECT * FROM user_skills WHERE user_id='$user_id' ORDER BY $skill_order DESC", $link);
 
 // check if more than one skill
-if (mysql_num_rows($query) != 0)
-{   
+if (mysql_num_rows($query) != 0) {   
     // helper counter
     $counter = 0;
 
     // iterate all skills
-    while ($row = mysql_fetch_row($query))
-    {   
+    while ($row = mysql_fetch_row($query)) {   
         // define skill details
         $skill_id               = $row[0];
         $skill_user_id          = $row[1];
@@ -29,39 +27,43 @@ if (mysql_num_rows($query) != 0)
         // define link to skill
         $skill_link             = $row[5];
 
-        if ($skill_link == '' || $skill_link == ' ') { $skill_link = NULL; }
+        if ($skill_link == '' || $skill_link == ' ') { 
+            $skill_link = NULL;
+        }
 
         // define learning resources
         $resource_link_1        = $row[6];
         $resource_link_2        = $row[7];
         $resource_link_3        = $row[8];
 
-        if ($resource_link_1 == '' || $resource_link_1 == ' ') { $resource_link_1 = NULL; }
-        if ($resource_link_2 == '' || $resource_link_2 == ' ') { $resource_link_2 = NULL; }
-        if ($resource_link_3 == '' || $resource_link_3 == ' ') { $resource_link_3 = NULL; }
+        if ($resource_link_1 == '' || $resource_link_1 == ' ') {
+            $resource_link_1 = NULL;
+        }
+        if ($resource_link_2 == '' || $resource_link_2 == ' ') {
+            $resource_link_2 = NULL;
+        }
+        if ($resource_link_3 == '' || $resource_link_3 == ' ') {
+            $resource_link_3 = NULL;
+        }
 
         if ($skill_link != NULL || $resource_link_1 != NULL || $resource_link_2 != NULL || $resource_link_3 != NULL) {
             $some_link = true;
-        }
-        else {
+        } else {
             $some_link = false;
         }
 
-        // define date
+        // define skill date, level, and type
         $skill_date             = date('d F, Y', strtotime($row[9]));
-
-        // define skill level
         $level                  = get_skill_level($skill_level);
-
-        // define skill level as fraction
         $skill_level_number     = $skill_level / 20;
-
-        // define type for colors
         $type                   = $skill_type;
 
         // theme colors
-        if ($theme == "Playful")  { $color = get_theme_skill_color($type); }
-        elseif ($theme == "Dark") { $color = "dark"; }
+        if ($theme == "Playful")  {
+            $color = get_theme_skill_color($type);
+        } elseif ($theme == "Dark") {
+            $color = "dark";
+        }
 
         // accordion wrapper
         echo "
@@ -72,8 +74,7 @@ if (mysql_num_rows($query) != 0)
                 if ($some_link) {
                     echo "
                     <a data-toggle='collapse' href='#collapse-$skill_id' aria-expanded='false' aria-controls='collapse-$skill_id'>";
-                }
-                else {
+                } else {
                     echo "
                     <a href='#'>";
                 }
@@ -82,8 +83,7 @@ if (mysql_num_rows($query) != 0)
                 if ($counter == 0) { 
                 echo "
                     <div class='bar-main-container simple no-margin no-border'>";
-                }
-                else { 
+                } else { 
                 echo "
                     <div class='bar-main-container simple no-margin'>";
                 }
@@ -156,8 +156,7 @@ if (mysql_num_rows($query) != 0)
                         if ($skill_link == NULL) {
                         echo"
                         <div class='col-xs-12 col-md-12 no-padding'>";
-                        }
-                        else {
+                        } else {
                         echo"
                         <div class='col-xs-12 col-md-12 no-padding margin-top-sm'>";
                         }
@@ -218,27 +217,18 @@ if (mysql_num_rows($query) != 0)
         <div class='modal fade no-padding' id='modal-skills-$skill_id' tabindex='-1' role='dialog' aria-labelledby='modal-skills-$skill_id'>
             <div class='container modal-dialog' role='document'>
                 <div class='row modal-content'>
-
                     <button type='button' class='btn btn-primary btn-greyscale-base btn-hover-greyscale-base btn-round no-margin' data-dismiss='modal' style='position: absolute;top: -15px;right: -15px;font-size: 3.2rem; padding: 0;'><i class='fa fa-times'></i></button>
-
                     <div class='col-md-12 modal-body'>
-
-                        <div class='col-md-12 no-padding'>
-                            <h2 class='no-margin-top'>Edit skill</h2>
-                        </div>
-
+                        <div class='col-md-12 no-padding'><h2 class='no-margin-top'>Edit skill</h2></div>
                         <div class='col-md-12 no-padding'>
                             <form id='update_$skill_id' action='myprofile.php' method='post' class='register input-dark'>
                                 <input type='hidden' id='updateSkillId' name='updateSkillId' value='$skill_id'>
-
                                 <div class='col-md-12 no-padding'>
-
                                     <!-- skill name -->
                                     <div class='col-md-12 no-padding margin-top-sm'>
                                         <input id='updateSkillName' name='updateSkillName' type='text' maxlength='40'>
                                         <label for='updateSkillName'>$skill_name</label>
                                     </div>
-
                                     <!-- skill type -->
                                     <div class='col-md-12 no-padding margin-top-sm'>
                                         <select id='updateSkillType' name='updateSkillType'>
@@ -250,7 +240,6 @@ if (mysql_num_rows($query) != 0)
                                             <option value='Language'"; if ($skill_type == "Language") { echo"selected"; } echo ">Language</option>
                                         </select>
                                     </div>
-
                                     <!-- skill level -->
                                     <div class='col-md-12 no-padding margin-top-sm'>
                                         <select id='updateSkillLevel' name='updateSkillLevel'>
@@ -261,57 +250,45 @@ if (mysql_num_rows($query) != 0)
                                             <option value='4'"; if ($skill_level == 100) { echo "selected"; } echo ">Master</option>
                                         </select>
                                     </div>
-
                                     <div class='col-md-12 no-padding margin-top-md'>
                                         <h4 class='no-margin'>Link (optional)</h4>
                                         <p class='no-margin padding-sm'>
                                             SPACE to remove.
                                         </p>
                                     </div>
-
                                     <!-- skill link -->
                                     <div class='col-md-12 no-padding margin-top-sm'>
                                         <input id='updateSkillLink' name='updateSkillLink' type='text' maxlength='140'>
                                         <label for='updateSkillLink'>"; if ($skill_link == '' || $skill_link == ' ') { echo "Add a link"; } else { echo "$skill_link"; } echo "</label>
                                     </div>
-
                                     <div class='col-md-12 no-padding margin-top-md'>
                                         <h4 class='no-margin'>Learning resources (optional)</h4>
                                         <p class='no-margin padding-sm'>
                                             SPACE to remove.
                                         </p>
                                     </div>
-
                                     <!-- resource link 1 -->
                                     <div class='col-md-12 no-padding margin-top-sm'>
                                         <input id='updateSkillResource1' name='updateSkillResource1' type='text' maxlength='140'>
                                         <label for='updateSkillResource1'>"; if ($resource_link_1 == '' || $resource_link_1 == ' ') { echo "Add a Resource"; } else { echo "$resource_link_1"; } echo "</label>
                                     </div>
-
                                     <!-- resource link 2 -->
                                     <div class='col-md-12 no-padding margin-top-sm'>
                                         <input id='updateSkillResource2' name='updateSkillResource2' type='text' maxlength='140'>
                                         <label for='updateSkillResource2'>"; if ($resource_link_2 == '' || $resource_link_2 == ' ') { echo "Add a resource"; } else { echo "$resource_link_2"; } echo "</label>
                                     </div>
-
                                     <!-- resource link 3 -->
                                     <div class='col-md-12 no-padding margin-top-sm'>
                                         <input id='updateSkillResource3' name='updateSkillResource3' type='text' maxlength='140'>
                                         <label for='updateSkillResource3'>"; if ($resource_link_3 == '' || $resource_link_3 == ' ') { echo "Add a resource"; } else { echo "$resource_link_3"; } echo "</label>
                                     </div>
-
                                 </div>
-
                             </form>
                         </div>
-
                     </div>
-
                     <div class='col-md-12 modal-footer'>
-
                         <!-- buttons -->
                         <div class='col-md-12 no-padding margin-top-sm'>
-
                             <!-- delete -->
                             <div class='col-md-3 no-padding margin-top-sm'>
                                 <form id='delete_$skill_id' action='myprofile.php' method='post'>
@@ -319,16 +296,12 @@ if (mysql_num_rows($query) != 0)
                                     <button type='submit' class='btn btn-secondary btn-alert btn-block no-margin' form='delete_$skill_id'><i class='fa fa-trash'></i></button>
                                 </form>
                             </div>
-                            
                             <!-- update -->
                             <div class='col-md-8 col-md-offset-1 no-padding margin-top-sm'>
                                 <button type='submit' class='btn btn-primary btn-greyscale-base btn-block no-margin' name='updateSkill' value='submit' form='update_$skill_id'>Update</button>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
@@ -337,9 +310,7 @@ if (mysql_num_rows($query) != 0)
         // iterate counter
         $counter++;
     }
-}
-else 
-{
+} else {
     // output if no skills
     echo "
         <div class='col-md-12 col-xs-12'>
@@ -351,4 +322,5 @@ else
         </div>
     ";
 }
+
 ?>

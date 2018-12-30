@@ -1,4 +1,4 @@
-<?php
+<?php // register_.php
 
 //-----------------------------------------------------
 // Register new user
@@ -12,17 +12,11 @@ $regex_username = "/^[a-zA-Z0-9]{3,16}$/";
 $regex_text = "/\b([a-zA-Z0-9]+){3,}\b/";
 $regex_email = "/\b[a-zA-Z0-9._%+-]+(@)[a-zA-Z0-9.-]+[a-zA-Z]{2,4}\b/";
 
-if (isset($_POST['submit']) && empty($error))
-{	
+if (isset($_POST['submit']) && empty($error)) {	
 	// check if username, email, or password is empty
-	if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']))
-	{
+	if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])) {
 		$error = "Invalid account details, please try again. <strong><a href='mailto:support@doolio.co'>Neep help?</a></strong>";
-	}
-
-	// check if username, email, and country is valid
-	elseif (preg_match($regex_username, $_POST['username']) && preg_match($regex_email, $_POST['email']) && preg_match($regex_text, $_POST['country']))
-	{
+	} elseif (preg_match($regex_username, $_POST['username']) && preg_match($regex_email, $_POST['email']) && preg_match($regex_text, $_POST['country'])) {
 		// define username, email, and password
 		$username = strtolower($_POST['username']);
 		$email = strtolower($_POST['email']);
@@ -52,19 +46,13 @@ if (isset($_POST['submit']) && empty($error))
 		$email_check = mysql_num_rows($email_query);
 
 		// check if username is available
-		if (is_username_available($username, $link) === false)
-		{
+		if (is_username_available($username, $link) === false) {
 			$error = "<strong>Sorry!</strong> This username is not available.";
-		}
-		else
-		{
+		} else {
 			// check if email is available
-			if ($email_check != 0)
-			{
+			if ($email_check != 0) {
 				$error = "<strong>Sorry!</strong> This email is already in use.";
-			}
-			else
-			{
+			} else {
 				// insert new user into user_auth
 			    $insert_auth_query = " INSERT INTO user_auth".
 			                    	 " (username, password) ".
@@ -100,9 +88,7 @@ if (isset($_POST['submit']) && empty($error))
 		
 		// closing Connection
 		mysql_close($link);
-	}
-	else
-	{
+	} else {
 		$error = "Invalid account details, please try again. <strong><a href='mailto:support@doolio.co'>Neep help?</a></strong>";
 	}
 }

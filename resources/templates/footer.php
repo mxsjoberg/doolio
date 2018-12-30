@@ -1,4 +1,3 @@
-<!-- footer -->
 <script src='../_js/bootstrap.min.js'></script>
 <script src='../_js/jquery.easing.min.js'></script>
 <script src='../_js/jquery.fittext.js'></script>

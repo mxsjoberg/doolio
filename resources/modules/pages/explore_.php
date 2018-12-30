@@ -1,4 +1,4 @@
-<?php
+<?php // explore_.php
 
 //  ----------------------------------------------------------------------------
 //  Iterate and output skills based on search query.
@@ -6,26 +6,21 @@
 //  Require     : connect.php
 //  Input       : 
 //  ----------------------------------------------------------------------------
-
 if (!empty($_POST["search"]) && empty($error)) {
-    
     // define form inputs
     $search = $_POST["search"];
 
-    if ($search != NULL)
-    {
+    if ($search != NULL) {
         // query database for skills
         $query = mysql_query("SELECT * FROM user_skills WHERE skill_name='$search' ORDER BY skill_date DESC", $link);
 
         // check if more than one skill
-        if (mysql_num_rows($query) != 0)
-        {   
+        if (mysql_num_rows($query) != 0) {   
             // text
             echo "
             <div class='col-xs-12 col-md-12 padding-sm'>
                 <p class='no-margin'>Showing users with skill: <strong>$search</strong></p>
             </div>";
-
             // start skill wrapper
             echo "
             <div class='col-xs-12 col-md-12 no-padding bg-color bg-color-white border-light no-border-radius'>";
@@ -34,8 +29,7 @@ if (!empty($_POST["search"]) && empty($error)) {
             $counter = 0;
 
             // iterate skills
-            while ($row = mysql_fetch_row($query))
-            {   
+            while ($row = mysql_fetch_row($query)) {   
                 // define skill details
                 $skill_date     = date('d F, Y', strtotime($row[6]));
                 $skill_id       = $row[0];
@@ -61,8 +55,7 @@ if (!empty($_POST["search"]) && empty($error)) {
                 if ($counter == 0) {
                     echo "
                     <div class='bar-main-container simple no-margin no-border'>";
-                }
-                else { 
+                } else { 
                     echo "
                     <div class='bar-main-container simple no-margin'>";
                 }
@@ -99,9 +92,7 @@ if (!empty($_POST["search"]) && empty($error)) {
 
             // end skill wrapper
             echo "</div>";
-        }
-        else 
-        {
+        } else {
             // output if no skills for search
             echo "
             <div class='col-md-12 col-xs-12'>
@@ -114,8 +105,7 @@ if (!empty($_POST["search"]) && empty($error)) {
             ";
         }
 
-    }
-    else {
+    } else {
         echo "
         <div class='col-md-12 col-xs-12'>
             <div class='col-md-12 col-xs-12'>
@@ -126,8 +116,7 @@ if (!empty($_POST["search"]) && empty($error)) {
         </div>";
     }
 
-}
-else {
+} else {
     echo "
     <div class='col-md-12 col-xs-12'>
         <div class='col-md-12 col-xs-12'>

@@ -1,18 +1,14 @@
-<?php
+<?php // login_.php
 
 // require ('../connect.php');
 
 // starting session
 session_start();
 
-if (isset($_POST['submit']))
-{
-	if (empty($_POST['username']) || empty($_POST['password']))
-	{
+if (isset($_POST['submit'])) {
+	if (empty($_POST['username']) || empty($_POST['password'])) {
 		$error = "Invalid username or password, please try again. <strong><a href='resetpassword'>Forgot password?</a></strong>";
-	}
-	else
-	{
+	} else {
 		// define username and password
 		$username = $_POST['username'];
 		$password = $_POST['password'];
@@ -30,27 +26,21 @@ if (isset($_POST['submit']))
 		$query = mysql_query("SELECT * FROM user_auth WHERE password='$password' AND username='$username'", $link);
 		$rows = mysql_num_rows($query);
 
-		if ($rows == 1)
-		{
+		if ($rows == 1) {
 			// SQL query to update active date
 		    $query_update = "UPDATE user_auth SET active=now() WHERE username='$username'";
 		    $update = mysql_query($query_update, $link);
 
-		    if(!$update) 
-		    {
+		    if(!$update) {
 			    $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-		    }
-		    else
-		    {	
+		    } else {	
 		    	// initializing session
 				$_SESSION['login_user'] = $username;
 				
 		    	// redirecting to other page
 				header("location: myprofile");
 		    }
-		}
-		else
-		{
+		} else {
 			$error = "Invalid username or password, please try again. <strong><a href='resetpassword'>Forgot password?</a></strong>";
 		}
 		

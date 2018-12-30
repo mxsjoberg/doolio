@@ -1,4 +1,4 @@
-<?php
+<?php // settings_.php
 
 // regex for validation
 $regex_username = "/^[a-zA-Z0-9]{3,16}$/";
@@ -10,12 +10,10 @@ $regex_email = "/\b[a-zA-Z0-9._%+-]+(@)[a-zA-Z0-9.-]+[a-zA-Z]{2,4}\b/";
 // Change username
 //-----------------------------------------------------
 if (!empty($_POST["username"]) && empty($error)) {
-
 	$new_username = strtolower($_POST['username']);
 	
 	// validate username
-	if (preg_match($regex_username, $new_username))
-	{
+	if (preg_match($regex_username, $new_username)) {
 		// $new_username = stripslashes($new_username);
 		// $new_username = mysql_real_escape_string($new_username);
 
@@ -24,21 +22,16 @@ if (!empty($_POST["username"]) && empty($error)) {
 		// $new_username_check = mysql_num_rows($new_username_query);
 
 		// check if new username is available
-		if (is_username_available($new_username, $link) === false)
-		{
+		if (is_username_available($new_username, $link) === false) {
 			$error = "<strong>Sorry!</strong> This username is not available.";
-		}
-		else
-		{
+		} else {
 			// update new username in user_auth
 	        $query = "UPDATE user_auth SET username='$new_username' WHERE user_id='$user_id'";
 	        $update = mysql_query($query, $link);
 
 	        if(!$update) {
 	            $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-	        }
-	        else
-	        {	
+	        } else {	
 	        	// update active session
 	        	$_SESSION['login_user'] = $new_username;
 
@@ -46,8 +39,7 @@ if (!empty($_POST["username"]) && empty($error)) {
 	        	$success = "<strong>Geronimo!</strong> Successfully updated settings.";
 	        }
 		}
-	}
-	else {
+	} else {
 		$error = "<strong>Sorry!</strong> This username is not available.";
 	}
 }
@@ -56,11 +48,9 @@ if (!empty($_POST["username"]) && empty($error)) {
 // Change email
 //-----------------------------------------------------
 if (!empty($_POST["email"]) && empty($error)) {
-
 	$new_email = strtolower($_POST['email']);
 	
-	if (preg_match($regex_email, $new_email))
-	{
+	if (preg_match($regex_email, $new_email)) {
 		$new_email = stripslashes($new_email);
 		$new_email = mysql_real_escape_string($new_email);
 
@@ -69,27 +59,21 @@ if (!empty($_POST["email"]) && empty($error)) {
 		$new_email_check = mysql_num_rows($new_email_query);
 
 		// check if new email is available
-		if ( $new_email_check != 0 )
-		{
+		if ( $new_email_check != 0 ) {
 			$error = "<strong>Sorry!</strong> This email is already in use.";
-		}
-		else
-		{
+		} else {
 			// update new email in user_auth
 	        $query = "UPDATE user_details SET contact_email='$new_email' WHERE user_id='$user_id'";
 	        $update = mysql_query($query, $link);
 
 	        if(!$update) {
 	            $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-	        }
-	        else
-	        {	
+	        } else {	
 				// success message
 	        	$success = "<strong>Geronimo!</strong> Successfully updated settings.";
 	        }
 		}
-	}
-	else {
+	} else {
 		$error = "<strong>Sorry!</strong> This email is not valid.";
 	}
 }
@@ -98,11 +82,9 @@ if (!empty($_POST["email"]) && empty($error)) {
 // Change country
 //-----------------------------------------------------
 if (!empty($_POST["country"]) && empty($error)) {
-
 	$new_country = ucwords($_POST['country']);
 	
-	if (preg_match($regex_text, $new_country))
-	{
+	if (preg_match($regex_text, $new_country)) {
 		$new_country = stripslashes($new_country);
 		$new_country = mysql_real_escape_string($new_country);
 
@@ -112,14 +94,11 @@ if (!empty($_POST["country"]) && empty($error)) {
 
 	    if(!$update) {
 	        $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-	    }
-	    else
-	    {	
+	    } else {	
 			// success message
 	    	$success = "<strong>Geronimo!</strong> Successfully updated settings.";
 	    }
-	}
-	else {
+	} else {
 		$error = "<strong>Sorry!</strong> This country is not valid.";
 	}
 }
@@ -128,11 +107,9 @@ if (!empty($_POST["country"]) && empty($error)) {
 // Change first name
 //-----------------------------------------------------
 if (!empty($_POST["firstName"]) && empty($error)) {
-
 	$new_first_name = ucwords($_POST["firstName"]);
 	
-	if (preg_match($regex_name, $new_first_name))
-	{
+	if (preg_match($regex_name, $new_first_name)) {
 		$new_first_name = stripslashes($new_first_name);
 		$new_first_name = mysql_real_escape_string($new_first_name);
 
@@ -142,14 +119,11 @@ if (!empty($_POST["firstName"]) && empty($error)) {
 
 	    if(!$update) {
 	        $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-	    }
-	    else
-	    {	
+	    } else {	
 			// success message
 	    	$success = "<strong>Geronimo!</strong> Successfully updated settings.";
 	    }
-	}
-	else {
+	} else {
 		$error = "<strong>Sorry!</strong> This first name is not valid.";
 	}
 }
@@ -158,11 +132,9 @@ if (!empty($_POST["firstName"]) && empty($error)) {
 // Change second name
 //-----------------------------------------------------
 if (!empty($_POST["secondName"]) && empty($error)) {
-
 	$new_second_name = ucwords($_POST["secondName"]);
 	
-	if (preg_match($regex_name, $new_second_name))
-	{
+	if (preg_match($regex_name, $new_second_name)) {
 		$new_second_name = stripslashes($new_second_name);
 		$new_second_name = mysql_real_escape_string($new_second_name);
 
@@ -172,14 +144,11 @@ if (!empty($_POST["secondName"]) && empty($error)) {
 
 	    if(!$update) {
 	        $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-	    }
-	    else
-	    {	
+	    } else {	
 			// success message
 	    	$success = "<strong>Geronimo!</strong> Successfully updated settings.";
 	    }
-	}
-	else {
+	} else {
 		$error = "<strong>Sorry!</strong> This second name is not valid.";
 	}
 }
@@ -187,10 +156,8 @@ if (!empty($_POST["secondName"]) && empty($error)) {
 //-----------------------------------------------------
 // Change password
 //-----------------------------------------------------
-if (!empty($_POST["newPasswordFirst"]) || !empty($_POST["newPasswordSecond"]) || !empty($_POST["oldPassword"]) && empty($error))
-{
-	if ($_POST["newPasswordFirst"] === $_POST["newPasswordSecond"])
-	{
+if (!empty($_POST["newPasswordFirst"]) || !empty($_POST["newPasswordSecond"]) || !empty($_POST["oldPassword"]) && empty($error)) {
+	if ($_POST["newPasswordFirst"] === $_POST["newPasswordSecond"]) {
 		// define new and current password
 		$new_password = $_POST["newPasswordFirst"];
 		$password = $_POST['password'];
@@ -210,33 +177,26 @@ if (!empty($_POST["newPasswordFirst"]) || !empty($_POST["newPasswordSecond"]) ||
 		$query = mysql_query("SELECT * FROM user_auth WHERE password='$password' AND user_id='$user_id'", $link);
 		$rows = mysql_num_rows($query);
 
-		if ($rows == 1)
-		{
+		if ($rows == 1) {
 			// update new password in user_auth for user id
 		    $query = "UPDATE user_auth SET password='$new_password' WHERE user_id='$user_id'";
 		    $update = mysql_query($query, $link);
 
 		    if(!$update) {
 		        $error = "<strong>Uh-oh!</strong> Something went wrong, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
-		    }
-		    else
-		    {	
+		    } else {	
 				// success message
 		    	$success = "<strong>Geronimo!</strong> Successfully updated settings.";
 		    }
-		}
-		else
-		{
+		} else {
 			$error = "Invalid password, please try again. <strong><a href='resetpassword.php'>Forgot password?</a></strong>";
 		}
-	}
-	else {
+	} else {
 		$error = "Password did not match, please try again. <strong><a href='mailto:support@doolio.co'>Need help?</a></strong>";
 	}
 }
 
-if (!empty($_POST["submitEditAccount"]) || !empty($_POST["submitNewPassword"]) && empty($error))
-{	
+if (!empty($_POST["submitEditAccount"]) || !empty($_POST["submitNewPassword"]) && empty($error)) {	
 	// refresh page if updated
 	if ($success != Null) { header("Refresh: 2; url=settings"); }
 }

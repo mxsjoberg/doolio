@@ -1,4 +1,4 @@
-<?php
+<?php // api.php
 
 //-----------------------------------------------------
 // Display a user badge with name and skills
@@ -28,13 +28,10 @@ if (preg_match($regex_username, $submit))
     $user_details_row = mysql_fetch_row($user_details_query);
 
     // define name
-    if ($user_details_row[1] == NULL || $user_details_row[2] == NULL)
-    {   
+    if ($user_details_row[1] == NULL || $user_details_row[2] == NULL) {   
         // set name to 'Private' if missing
         $name = "Private";
-    }
-    else
-    { 
+    } else { 
         // set name to first- and second name
         $name = "$user_details_row[1] $user_details_row[2]";
     }
@@ -95,9 +92,7 @@ if (preg_match($regex_username, $submit))
 
     // close connection
     mysql_close($link);
-}
-else
-{
+} else {
     // set default font
     $font = "Source Sans Pro";
 
