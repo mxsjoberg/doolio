@@ -2,11 +2,9 @@
 
 # SCREENSHOTS
 
-![1](https://github.com/michaelsjoeberg/doolio/blob/master/Screenshot%202018-12-30%20at%2017.52.46.png)
-![2](https://github.com/michaelsjoeberg/doolio/blob/master/Screenshot%202018-12-30%20at%2017.53.15.png)
-![3](https://github.com/michaelsjoeberg/doolio/blob/master/Screenshot%202018-12-30%20at%2017.55.04.png)
 ![4](https://github.com/michaelsjoeberg/doolio/blob/master/Screenshot%202018-12-30%20at%2017.55.19.png)
 ![5](https://github.com/michaelsjoeberg/doolio/blob/master/Screenshot%202018-12-30%20at%2018.01.00.png)
+![2](https://github.com/michaelsjoeberg/doolio/blob/master/Screenshot%202018-12-30%20at%2017.53.15.png)
 
 # DATABASE CREATES
 
